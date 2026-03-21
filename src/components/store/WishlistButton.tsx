@@ -7,10 +7,10 @@ import { useState } from "react";
 
 interface WishlistButtonProps {
     productId: number;
-    initialIsLiked: boolean;
+    initialIsLiked?: boolean;
 }
 
-export function WishlistButton({ productId, initialIsLiked }: WishlistButtonProps) {
+export function WishlistButton({ productId, initialIsLiked = false }: WishlistButtonProps) {
     const [isLiked, setIsLiked] = useState(initialIsLiked);
     const [isLoading, setIsLoading] = useState(false);
 

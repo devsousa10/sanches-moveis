@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { updateOrderStatus } from "@/actions/orders";
-import { Loader2, Check } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 interface StatusButtonProps {
     orderId: string;
