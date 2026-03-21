@@ -2,6 +2,8 @@ import { CustomerSidebar } from "@/components/customer/CustomerSidebar";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers"; // Ou sua lógica de auth
 
+export const dynamic = "force-dynamic";
+
 export default async function CustomerLayout({ children }: { children: React.ReactNode }) {
     // Verificação básica de sessão (Exemplo)
     // const session = await getSession();

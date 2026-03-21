@@ -3,6 +3,8 @@ import { ProductCard } from "@/components/store/ProductCard";
 import { Timer, Zap } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 // Componente do Cronômetro (Simples visualmente)
 function OfferTimer({ date }: { date: Date }) {
     // Nota: Para um timer dinâmico em tempo real, precisaríamos de um Client Component.

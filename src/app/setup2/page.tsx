@@ -1,6 +1,8 @@
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function SetupPage() {
     const email = "admin@sanches.com";
     const password = "123";

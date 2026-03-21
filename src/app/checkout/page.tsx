@@ -2,6 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { CheckoutClient } from "@/components/checkout/CheckoutClient";
 
+export const dynamic = "force-dynamic";
+
 export default async function CheckoutPage() {
     const cookieStore = await cookies();
     const session = cookieStore.get("sanches_session");

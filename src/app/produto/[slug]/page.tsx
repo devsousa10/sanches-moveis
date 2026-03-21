@@ -9,6 +9,8 @@ import { getProductReviews } from "@/actions/reviews";
 import { getInstallmentOptions } from "@/actions/payment";
 import { ReviewsSection } from "@/components/shop/ReviewsSection";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 

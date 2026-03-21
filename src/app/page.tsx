@@ -4,7 +4,7 @@ import { ArrowRight, Star, Truck, CreditCard, ShieldCheck, Box } from "lucide-re
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const categories = await prisma.category.findMany({
