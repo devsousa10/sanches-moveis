@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  role      String    @default("USER")
+  
+  cpf       String?
+  phone     String?
+  
+  orders    Order[]
+  addresses Address[]
+  wishlist  Product[] @relation("UserWishlist")
+  reviews   Review[]
+  
+  createdAt DateTime  @default(now())
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  imageUrl    String?
+  description String?   @default("")
+  featured    Boolean   @default(false)
+  
+  products    Product[]
+  coupons     Coupon[]
+  createdAt   DateTime  @default(now())
+}
+
+model Product {
+  id              Int              @id @default(autoincrement())
+  name            String
+  slug            String           @unique @default(cuid())
+  description     String           @default("")
+  price           Decimal          @db.Decimal(10, 2)
+  discountPercent Int              @default(0)
+  stock           Int              @default(0)
+  images          String[]         @default([])
+  featured        Boolean          @default(false)
+  isActive        Boolean          @default(true)
+  
+  // OFERTAS
+  isOffer         Boolean          @default(false)
+  offerExpiresAt  DateTime?
+  
+  // NOVO: CONFIGURAÇÃO DE PARCELAMENTO
+  maxInstallments  Int             @default(12) // Ex: Vender em até 12x
+  freeInstallments Int             @default(12) // Ex: Até 10x sem juros (o resto com juros)
+  
+  width           Decimal?         @db.Decimal(10, 2)
+  height          Decimal?         @db.Decimal(10, 2)
+  depth           Decimal?         @db.Decimal(10, 2)
+  weight          Decimal?         @db.Decimal(10, 2)
+  
+  categoryId      Int
+  category        Category         @relation(fields: [categoryId], references: [id])
+  
+  variants        ProductVariant[]
+  orderItems      OrderItem[]
+  wishlistedBy    User[]           @relation("UserWishlist")
+  reviews         Review[]
+  
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model ProductVariant {
+  id         Int      @id @default(autoincrement())
+  colorName  String
+  colorValue String
+  stock      Int      @default(0)
+  images     String[] @default([])
+  
+  productId  Int
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String?
+  
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  
+  createdAt DateTime @default(now())
+}
+
+model Address {
+  id           Int     @id @default(autoincrement())
+  name         String
+  recipient    String
+  cep          String
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  
+  userId       Int
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id            String      @id @default(uuid())
+  total         Decimal     @db.Decimal(10, 2)
+  status        String      @default("PENDING") 
+  
+  customerName  String
+  customerEmail String
+  customerPhone String?
+  customerDoc   String?     
+  
+  shippingCep     String?
+  shippingAddress String?
+  trackingCode    String?
+
+  userId        Int?
+  user          User?       @relation(fields: [userId], references: [id])
+  
+  items         OrderItem[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+  
+  name      String
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2)
+}
+
+model StoreSettings {
+  id          Int      @id @default(1)
+  storeName   String   @default("Sanches Móveis")
+  phone       String?
+  email       String?
+  address     String?
+  
+  logoUrl     String?
+  bannerUrl   String?
+  
+  primaryColor   String  @default("#EAB308")
+  secondaryColor String  @default("#000000")
+  
+  updatedAt   DateTime @updatedAt
+}
+
+model Coupon {
+  id            Int       @id @default(autoincrement())
+  code          String    @unique
+  discountType  String    @default("PERCENT")
+  discountValue Decimal   @db.Decimal(10, 2)
+  minOrderValue Decimal?  @db.Decimal(10, 2)
+  usageLimit    Int?      
+  usedCount     Int       @default(0)
+  expiresAt     DateTime?
+  isActive      Boolean   @default(true)
+  
+  categoryId    Int?
+  category      Category? @relation(fields: [categoryId], references: [id])
+  
+  createdAt     DateTime  @default(now())
+}

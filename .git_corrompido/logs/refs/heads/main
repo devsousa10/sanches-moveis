@@ -1,0 +1,47 @@
+0000000000000000000000000000000000000000 0671bac290c834cf42f750181ae6f31c74fe5f98 mzerafps <mzeraret@gmail.com> 1769741079 -0300	commit (initial): Initial commit from Create Next App
+0671bac290c834cf42f750181ae6f31c74fe5f98 0671bac290c834cf42f750181ae6f31c74fe5f98 mzerafps <mzeraret@gmail.com> 1769741217 -0300	Branch: renamed refs/heads/main to refs/heads/main
+0671bac290c834cf42f750181ae6f31c74fe5f98 7366a03529ab85a1b16d30b15c7af9b6d3d2aeea mzerafps <mzeraret@gmail.com> 1769741546 -0300	commit: chore: limpeza dos arquivos iniciais
+7366a03529ab85a1b16d30b15c7af9b6d3d2aeea 17349d164afa811babbaad03bbe098d7b15ada6d mzerafps <mzeraret@gmail.com> 1769742959 -0300	commit: fix: correção da configuração do tailwind e estilo global
+17349d164afa811babbaad03bbe098d7b15ada6d 6647d07ecf590ca8053419e78d22c717ce9d6f14 mzerafps <mzeraret@gmail.com> 1769743140 -0300	commit: style: alteração das cores da marca para amarelo, preto e vermelho
+6647d07ecf590ca8053419e78d22c717ce9d6f14 e7b54ec1207a3c42508f285a7de5fd825e987e29 mzerafps <mzeraret@gmail.com> 1769743244 -0300	commit: feat: criação do componente ProductCard e lista de produtos na home
+e7b54ec1207a3c42508f285a7de5fd825e987e29 d5720acb3637841e8617d4145bf7ef19ba1493fe mzerafps <mzeraret@gmail.com> 1769743624 -0300	commit: chore: configuração do banco de dados postgres e schema do prisma
+d5720acb3637841e8617d4145bf7ef19ba1493fe de01f149f1bc9e757e7a25f1831cf27e006f6932 mzerafps <mzeraret@gmail.com> 1769744611 -0300	commit: feat: layout moderno da página de produto com galeria e relacionados
+de01f149f1bc9e757e7a25f1831cf27e006f6932 705582f2596dcc8bef30175557d67f3d99f68de1 mzerafps <mzeraret@gmail.com> 1769744826 -0300	commit: feat: lógica de carrinho (context api) e botão interativo de compra
+705582f2596dcc8bef30175557d67f3d99f68de1 7b9f38bac291415fcf0e81e5973eb0172bda779a mzerafps <mzeraret@gmail.com> 1769745149 -0300	commit: fix: correção da lógica de diminuir quantidade no carrinho
+7b9f38bac291415fcf0e81e5973eb0172bda779a 49bdf7752df76781c41367f47629462f4ff2dcfc mzerafps <mzeraret@gmail.com> 1769745384 -0300	commit: feat: página de todos os produtos e conclusão da navegação
+49bdf7752df76781c41367f47629462f4ff2dcfc 32e8f7029e8952ce4683eeed6b1ae8a000c81e73 mzerafps <mzeraret@gmail.com> 1769808923 -0300	commit: versão 0.1
+32e8f7029e8952ce4683eeed6b1ae8a000c81e73 31b990745f074f025fe97956d75c7fa8c11bffb6 mzerafps <mzeraret@gmail.com> 1769828050 -0300	commit: feat: atualizacao completa (admin, checkout, area do cliente e filtros)
+31b990745f074f025fe97956d75c7fa8c11bffb6 1ce90347f63771f72ce5f7da98b3d1e212ceedd1 mzerafps <mzeraret@gmail.com> 1769846991 -0300	commit: feat: atualizações
+1ce90347f63771f72ce5f7da98b3d1e212ceedd1 569954c7218994990a5bcf76ddbc631fc54141aa mzerafps <mzeraret@gmail.com> 1769903832 -0300	commit: correção categorias em andamento
+569954c7218994990a5bcf76ddbc631fc54141aa 333e3a0badf0d0e032f85794ee327e793466c607 mzerafps <mzeraret@gmail.com> 1769904429 -0300	commit: correção pagina produtos
+333e3a0badf0d0e032f85794ee327e793466c607 e6ec5c2195c77fce79a68f64fbe25422f270f8e1 mzerafps <mzeraret@gmail.com> 1769909110 -0300	commit: Versionamento 0.2
+e6ec5c2195c77fce79a68f64fbe25422f270f8e1 29825c74af34d2db929d2102ed7c04dabaebe3ab mzerafps <mzeraret@gmail.com> 1769909550 -0300	commit: feat: add sales overview chart to admin dashboard
+29825c74af34d2db929d2102ed7c04dabaebe3ab 75261ef5e4d651289c458f3685fd74890d39765f mzerafps <mzeraret@gmail.com> 1769910744 -0300	commit: feat: redesign coupon form with live preview golden ticket ui
+75261ef5e4d651289c458f3685fd74890d39765f 05e62355156d12b976eac3b5bc87ed7629594c9a mzerafps <mzeraret@gmail.com> 1769911135 -0300	commit: feat: redesign categories with immersive cards and seo fields
+05e62355156d12b976eac3b5bc87ed7629594c9a 3aa1f30aab90d284f062c4d72bf7123d46521538 mzerafps <mzeraret@gmail.com> 1769912093 -0300	commit: feat: redesign product management with showroom ui and active status
+3aa1f30aab90d284f062c4d72bf7123d46521538 73c249925a99e4b1ba71ce058539313e92e2dd99 mzerafps <mzeraret@gmail.com> 1769912427 -0300	commit: feat: redesign orders with logistics command center ui and tracking features
+73c249925a99e4b1ba71ce058539313e92e2dd99 85421be2443f56193391dd8dacae2c240da0665a mzerafps <mzeraret@gmail.com> 1769912653 -0300	commit: feat: redesign admin dashboard with trend analytics and premium ui
+85421be2443f56193391dd8dacae2c240da0665a 730df832b5977f5760e2645ba2ad1d54477a876c mzerafps <mzeraret@gmail.com> 1769913084 -0300	commit: feat: redesign users management with crm profile cards and ltv stats
+730df832b5977f5760e2645ba2ad1d54477a876c cf1017410de309bb33f7ff8f650c7c17cb57b514 mzerafps <mzeraret@gmail.com> 1769913736 -0300	commit: feat: redesign settings page with 3d phone mockup preview and live store branding simulation
+cf1017410de309bb33f7ff8f650c7c17cb57b514 66198280ffd46d9530a8af2e6748a0b31e050f20 mzerafps <mzeraret@gmail.com> 1769915866 -0300	commit: Painel Cliente Criado
+66198280ffd46d9530a8af2e6748a0b31e050f20 06b3480557b42cc791e23ac7fe3558b895d1656a mzerafps <mzeraret@gmail.com> 1769941875 -0300	commit: feat: redesenhado produtos publicos
+06b3480557b42cc791e23ac7fe3558b895d1656a 2613e6b5a5bdf683e5da43ad638e7fdb1e4cbfc4 mzerafps <mzeraret@gmail.com> 1769943463 -0300	commit: fix(sidebar): corrige botao de logout apontando para rota errada
+2613e6b5a5bdf683e5da43ad638e7fdb1e4cbfc4 dcc11564f4a33da2b44c1f78cb376d97c5d7d1a7 mzerafps <mzeraret@gmail.com> 1769943830 -0300	commit: style(login): adapta textos para publico geral (clientes e admin)
+dcc11564f4a33da2b44c1f78cb376d97c5d7d1a7 26b8a7b8bbb0876cc19dc6e154e2293db6000d30 mzerafps <mzeraret@gmail.com> 1769998683 -0300	commit: fix(ui): altera imagens para object-contain para evitar cortes em fotos de moveis
+26b8a7b8bbb0876cc19dc6e154e2293db6000d30 3dcd32f2683f5fc6ea6a094c525f19e9ac52d76a mzerafps <mzeraret@gmail.com> 1770006200 -0300	commit: feat:versionamento 0.3
+3dcd32f2683f5fc6ea6a094c525f19e9ac52d76a 56335394ebf8d7a1d98eb0f2e11d7f66988ec9d1 mzerafps <mzeraret@gmail.com> 1770006972 -0300	commit: feat(pages): adiciona pagina sobre e atualiza link no hero
+56335394ebf8d7a1d98eb0f2e11d7f66988ec9d1 1f27b7c6a9679464c4fce9786ad70f0e382456bd mzerafps <mzeraret@gmail.com> 1770007320 -0300	commit: fix(policy): restringe area de entrega para Osasco-SP na pagina de politica
+1f27b7c6a9679464c4fce9786ad70f0e382456bd c0dac75885f3c8a5202c1d9c76cd9e0747b8a1b2 mzerafps <mzeraret@gmail.com> 1770089674 -0300	commit: feat:versionamento 0.4
+c0dac75885f3c8a5202c1d9c76cd9e0747b8a1b2 a857d68cd77999e701c7693bdc935fcdaf5ddf1d mzerafps <mzeraret@gmail.com> 1770132391 -0300	commit: chore: prepara deploy vercel
+a857d68cd77999e701c7693bdc935fcdaf5ddf1d d4a96c4b6fa4f47db288470d7d4f983aaafac8f4 mzerafps <mzeraret@gmail.com> 1770134020 -0300	commit: fix: adiciona freeShippingMin ao schema
+d4a96c4b6fa4f47db288470d7d4f983aaafac8f4 36e0fd9a0098182a20b3460f0d929e75303a3aa3 mzerafps <mzeraret@gmail.com> 1770134233 -0300	commit: fix(build): corrige tipagem do form action de reviews
+36e0fd9a0098182a20b3460f0d929e75303a3aa3 37511a87f4a5c71ae2b9c38bab152423498a7cdd mzerafps <mzeraret@gmail.com> 1770134438 -0300	commit: fix(build): trata campos nulos nas configuracoes
+37511a87f4a5c71ae2b9c38bab152423498a7cdd ad1f79e77e47f055ba3740e4bdc14f6df6382ec3 mzerafps <mzeraret@gmail.com> 1770134734 -0300	commit: fix(build): corrige tipagem server action form na pagina de cupons
+ad1f79e77e47f055ba3740e4bdc14f6df6382ec3 373d3ccabed0d27a7b07f8a83faa8a247babe840 mzerafps <mzeraret@gmail.com> 1770135217 -0300	commit: fix(build): remove tipagem incorreta FloatFilter
+373d3ccabed0d27a7b07f8a83faa8a247babe840 0aaebd65e722d80b47096a9059ed31d42139889c mzerafps <mzeraret@gmail.com> 1770135425 -0300	commit: fix(build): corrige tipagem action delete review na conta do usuario
+0aaebd65e722d80b47096a9059ed31d42139889c a63f8ce69090a2584ba794dd5b691daffded68f2 mzerafps <mzeraret@gmail.com> 1770135987 -0300	commit: fix(build): corrige tipagem action wishlist final
+a63f8ce69090a2584ba794dd5b691daffded68f2 99d43ab04437d9b19693abfaaf695b5f1bf22bb3 mzerafps <mzeraret@gmail.com> 1770136127 -0300	commit: feat: adiciona actions completas de wishlist
+99d43ab04437d9b19693abfaaf695b5f1bf22bb3 d2901a7d2c6a8a6379b2df8fe0e68fc73f7a446f mzerafps <mzeraret@gmail.com> 1770136335 -0300	commit: fix(build): corrige iteracao da wishlist removendo propriedade inexistente
+d2901a7d2c6a8a6379b2df8fe0e68fc73f7a446f c931e89a819b193d67da8e13f1315495d930dc09 mzerafps <mzeraret@gmail.com> 1770137266 -0300	commit: feat: restaurando backup
+c931e89a819b193d67da8e13f1315495d930dc09 c931e89a819b193d67da8e13f1315495d930dc09 mzerafps <mzeraret@gmail.com> 1774060596 -0300	Branch: renamed refs/heads/main to refs/heads/main
+c931e89a819b193d67da8e13f1315495d930dc09 a0dc3bdc61dba7dadb86d0e2390f2e03fcb53bd6 devsousa10 <msouzera10@gmail.com> 1774084147 -0300	commit: Atualizções
