@@ -1,4 +1,4 @@
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/store/ProductCard";
 import { Timer, Zap } from "lucide-react";
 import Link from "next/link";
@@ -24,9 +24,11 @@ function OfferTimer({ date }: { date: Date }) {
 
 export default async function OffersPage() {
     // Busca produtos marcados como oferta e que estão ativos
-    const offers = await withDatabaseFallback(
-        () =>
-            prisma.product.findMany({
+    let offers: Array<any> = [];
+
+    if (process.env.DATABASE_URL?.trim()) {
+        try {
+            offers = await prisma.product.findMany({
                 where: {
                     isActive: true,
                     isOffer: true,
@@ -37,10 +39,13 @@ export default async function OffersPage() {
                 orderBy: {
                     offerExpiresAt: 'asc',
                 }
-            }),
-        [],
-        "OffersPage.offers"
-    );
+            });
+        } catch (error) {
+            console.error("[Database] Falha ao carregar ofertas:", error);
+        }
+    } else {
+        console.error("[Database] DATABASE_URL ausente em OffersPage.");
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 pb-20">

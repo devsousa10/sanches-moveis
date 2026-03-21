@@ -2,33 +2,52 @@ import { ProductCard } from "@/components/store/ProductCard";
 import Link from "next/link";
 import { ArrowRight, Star, Truck, CreditCard, ShieldCheck, Box } from "lucide-react";
 import Image from "next/image";
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [categories, featuredProducts] = await Promise.all([
-    withDatabaseFallback(
-      () =>
+  let categories: Array<{
+    id: number;
+    name: string;
+    slug: string;
+    imageUrl: string | null;
+  }> = [];
+
+  let featuredProducts: Array<{
+    id: number;
+    name: string;
+    slug: string;
+    price: any;
+    images: string[];
+    discountPercent: number;
+    isOffer: boolean;
+    maxInstallments: number | null;
+    freeInstallments: number | null;
+    category: { name: string };
+  }> = [];
+
+  if (process.env.DATABASE_URL?.trim()) {
+    try {
+      [categories, featuredProducts] = await Promise.all([
         prisma.category.findMany({
           take: 6,
-          orderBy: { products: { _count: 'desc' } }
+          orderBy: { products: { _count: 'desc' } },
+          select: { id: true, name: true, slug: true, imageUrl: true }
         }),
-      [],
-      "Home.categories"
-    ),
-    withDatabaseFallback(
-      () =>
         prisma.product.findMany({
           where: { featured: true, isActive: true },
           include: { category: true },
           take: 8,
           orderBy: { createdAt: 'desc' }
-        }),
-      [],
-      "Home.featuredProducts"
-    )
-  ]);
+        })
+      ]);
+    } catch (error) {
+      console.error("[Database] Falha ao carregar home:", error);
+    }
+  } else {
+    console.error("[Database] DATABASE_URL ausente em Home.");
+  }
 
   // CORREÇÃO AQUI: Adicionamos os campos de parcelamento
   const formattedProducts = featuredProducts.map((p) => ({

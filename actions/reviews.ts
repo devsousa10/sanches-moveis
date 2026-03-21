@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -93,16 +93,21 @@ export async function getProductReviews(productId: number) {
     const session = cookieStore.get("sanches_session");
     const currentUserId = session?.value ? Number(session.value) : null;
 
-    const reviews = await withDatabaseFallback(
-        () =>
-            prisma.review.findMany({
+    let reviews: Array<any> = [];
+
+    if (process.env.DATABASE_URL?.trim()) {
+        try {
+            reviews = await prisma.review.findMany({
                 where: { productId },
                 include: { user: { select: { id: true, name: true, role: true } } },
                 orderBy: { createdAt: 'desc' }
-            }),
-        [],
-        `getProductReviews.${productId}`
-    );
+            });
+        } catch (error) {
+            console.error(`[Database] Falha ao carregar reviews do produto ${productId}:`, error);
+        }
+    } else {
+        console.error(`[Database] DATABASE_URL ausente em getProductReviews.${productId}.`);
+    }
 
     const total = reviews.length;
     const average = total > 0

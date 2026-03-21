@@ -1,24 +1,29 @@
 import { ProductCard } from "@/components/ProductCard";
 import Link from "next/link";
 import { ArrowLeft, Search } from "lucide-react";
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
 export default async function AllProductsPage() {
-    const products = await withDatabaseFallback(
-        () =>
-            prisma.product.findMany({
+    let products: Array<any> = [];
+
+    if (process.env.DATABASE_URL?.trim()) {
+        try {
+            products = await prisma.product.findMany({
                 include: {
                     category: true,
                 },
                 orderBy: {
                     createdAt: 'desc',
                 },
-            }),
-        [],
-        "AllProductsPage.products"
-    );
+            });
+        } catch (error) {
+            console.error("[Database] Falha ao carregar produtos:", error);
+        }
+    } else {
+        console.error("[Database] DATABASE_URL ausente em AllProductsPage.");
+    }
 
     const formattedProducts = products.map((p) => ({
         ...p,

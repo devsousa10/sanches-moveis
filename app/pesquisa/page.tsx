@@ -1,7 +1,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import { Search, Frown, ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
@@ -32,9 +32,11 @@ export default async function SearchPage({
     }
 
     // 3. Busca no banco (Nome ou Descrição)
-    const products = await withDatabaseFallback(
-        () =>
-            prisma.product.findMany({
+    let products: Array<any> = [];
+
+    if (process.env.DATABASE_URL?.trim()) {
+        try {
+            products = await prisma.product.findMany({
                 where: {
                     OR: [
                         { name: { contains: q, mode: "insensitive" } },
@@ -45,10 +47,13 @@ export default async function SearchPage({
                 orderBy: {
                     stock: 'desc'
                 }
-            }),
-        [],
-        "SearchPage.products"
-    );
+            });
+        } catch (error) {
+            console.error("[Database] Falha ao carregar pesquisa:", error);
+        }
+    } else {
+        console.error("[Database] DATABASE_URL ausente em SearchPage.");
+    }
 
     // 4. Formata para o Card (Decimal -> Number)
     const formattedProducts = products.map((p) => ({

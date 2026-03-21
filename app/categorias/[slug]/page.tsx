@@ -1,7 +1,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryControlBar } from "@/components/store/CategoryControlBar";
 import { notFound } from "next/navigation";
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
@@ -65,9 +65,11 @@ export default async function CategoryPage(props: CategoryPageProps) {
         ? { gte: minPrice ?? 0, lte: maxPrice ?? 1000000 }
         : undefined;
 
-    const category = await withDatabaseFallback(
-        () =>
-            prisma.category.findUnique({
+    let category = null;
+
+    if (process.env.DATABASE_URL?.trim()) {
+        try {
+            category = await prisma.category.findUnique({
                 where: { slug: params.slug },
                 include: {
                     products: {
@@ -76,10 +78,13 @@ export default async function CategoryPage(props: CategoryPageProps) {
                         include: { category: true }
                     }
                 }
-            }),
-        null,
-        `CategoryPage.${params.slug}`
-    );
+            });
+        } catch (error) {
+            console.error(`[Database] Falha ao carregar categoria ${params.slug}:`, error);
+        }
+    } else {
+        console.error(`[Database] DATABASE_URL ausente em CategoryPage.${params.slug}.`);
+    }
 
     if (!category) return notFound();
 

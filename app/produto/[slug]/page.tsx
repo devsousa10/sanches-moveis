@@ -1,7 +1,7 @@
 import { ProductMainSection } from "@/components/store/ProductMainSection";
 import { ProductCard } from "@/components/ProductCard";
 import { notFound } from "next/navigation";
-import { prisma, withDatabaseFallback } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { ChevronRight, Home, ArrowRight } from "lucide-react";
 import { cookies } from "next/headers";
@@ -14,18 +14,23 @@ export const dynamic = "force-dynamic";
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    const product = await withDatabaseFallback(
-        () =>
-            prisma.product.findUnique({
+    let product = null;
+
+    if (process.env.DATABASE_URL?.trim()) {
+        try {
+            product = await prisma.product.findUnique({
                 where: { slug },
                 include: {
                     category: true,
                     variants: true
                 }
-            }),
-        null,
-        `ProductPage.${slug}`
-    );
+            });
+        } catch (error) {
+            console.error(`[Database] Falha ao carregar produto ${slug}:`, error);
+        }
+    } else {
+        console.error(`[Database] DATABASE_URL ausente em ProductPage.${slug}.`);
+    }
 
     if (!product) return notFound();
 
@@ -38,33 +43,31 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     const priceWithDiscount = Number(product.price) * (1 - product.discountPercent / 100);
 
     const [userData, relatedProducts, reviewsData, installmentOptions] = await Promise.all([
-        session?.value
-            ? withDatabaseFallback(
-                () =>
-                    prisma.user.findUnique({
-                        where: { id: Number(session.value) },
-                        include: { wishlist: { where: { id: product.id } } }
-                    }),
-                null,
-                `ProductPage.${slug}.userData`
-            )
+        session?.value && process.env.DATABASE_URL?.trim()
+            ? prisma.user.findUnique({
+                where: { id: Number(session.value) },
+                include: { wishlist: { where: { id: product.id } } }
+            }).catch((error) => {
+                console.error(`[Database] Falha ao carregar wishlist do produto ${slug}:`, error);
+                return null;
+            })
             : null,
 
-        withDatabaseFallback(
-            () =>
-                prisma.product.findMany({
-                    where: {
-                        categoryId: product.categoryId,
-                        id: { not: product.id },
-                        isActive: true
-                    },
-                    take: 4,
-                    include: { category: true },
-                    orderBy: { createdAt: 'desc' }
-                }),
-            [],
-            `ProductPage.${slug}.relatedProducts`
-        ),
+        process.env.DATABASE_URL?.trim()
+            ? prisma.product.findMany({
+                where: {
+                    categoryId: product.categoryId,
+                    id: { not: product.id },
+                    isActive: true
+                },
+                take: 4,
+                include: { category: true },
+                orderBy: { createdAt: 'desc' }
+            }).catch((error) => {
+                console.error(`[Database] Falha ao carregar relacionados do produto ${slug}:`, error);
+                return [];
+            })
+            : Promise.resolve([]),
 
         getProductReviews(product.id),
         getInstallmentOptions(priceWithDiscount, maxInstallments, freeInstallments)
