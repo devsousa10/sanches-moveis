@@ -19,7 +19,7 @@ async function main() {
     })
     console.log({ admin })
 
-    // 2. Criar Configurações Iniciais da Loja (O que estava faltando!)
+    // 2. Criar Configurações Iniciais da Loja
     const settings = await prisma.storeSettings.upsert({
         where: { id: 1 },
         update: {},
@@ -30,7 +30,6 @@ async function main() {
             email: 'contato@sanchesmoveis.com.br',
             primaryColor: '#EAB308',
             secondaryColor: '#000000',
-            freeShippingMin: 0,
         },
     })
     console.log({ settings })
