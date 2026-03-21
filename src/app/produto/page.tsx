@@ -17,7 +17,6 @@ export default async function AllProductsPage() {
         ...p,
         price: Number(p.price),
         category: p.category.name,
-        image: p.imageUrl || "",
     }));
 
     return (
