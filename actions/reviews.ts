@@ -1,9 +1,8 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma, withDatabaseFallback } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { withDatabaseFallback } from "@/lib/database";
 
 // Adicionar avaliação
 export async function addReview(formData: FormData) {

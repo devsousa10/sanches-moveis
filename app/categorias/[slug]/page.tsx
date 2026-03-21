@@ -1,12 +1,11 @@
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryControlBar } from "@/components/store/CategoryControlBar";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma, withDatabaseFallback } from "@/lib/prisma";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
 import { Prisma } from "@prisma/client";
-import { withDatabaseFallback } from "@/lib/database";
 
 export const dynamic = "force-dynamic";
 

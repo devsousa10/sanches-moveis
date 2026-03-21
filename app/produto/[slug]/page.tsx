@@ -1,14 +1,13 @@
 import { ProductMainSection } from "@/components/store/ProductMainSection";
 import { ProductCard } from "@/components/ProductCard";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma, withDatabaseFallback } from "@/lib/prisma";
 import Link from "next/link";
 import { ChevronRight, Home, ArrowRight } from "lucide-react";
 import { cookies } from "next/headers";
 import { getProductReviews } from "@/actions/reviews";
 import { getInstallmentOptions } from "@/actions/payment";
 import { ReviewsSection } from "@/components/shop/ReviewsSection";
-import { withDatabaseFallback } from "@/lib/database";
 
 export const dynamic = "force-dynamic";
 

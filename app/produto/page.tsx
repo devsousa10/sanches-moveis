@@ -1,8 +1,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import Link from "next/link";
 import { ArrowLeft, Search } from "lucide-react";
-import { prisma } from "@/lib/prisma";
-import { withDatabaseFallback } from "@/lib/database";
+import { prisma, withDatabaseFallback } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 

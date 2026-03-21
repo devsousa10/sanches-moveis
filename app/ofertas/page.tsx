@@ -1,8 +1,7 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, withDatabaseFallback } from "@/lib/prisma";
 import { ProductCard } from "@/components/store/ProductCard";
 import { Timer, Zap } from "lucide-react";
 import Link from "next/link";
-import { withDatabaseFallback } from "@/lib/database";
 
 export const dynamic = "force-dynamic";
 

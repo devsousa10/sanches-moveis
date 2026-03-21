@@ -2,8 +2,7 @@ import { ProductCard } from "@/components/store/ProductCard";
 import Link from "next/link";
 import { ArrowRight, Star, Truck, CreditCard, ShieldCheck, Box } from "lucide-react";
 import Image from "next/image";
-import { prisma } from "@/lib/prisma";
-import { withDatabaseFallback } from "@/lib/database";
+import { prisma, withDatabaseFallback } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
