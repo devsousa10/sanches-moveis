@@ -83,6 +83,10 @@ export async function deleteReview(formData: FormData) {
     }
 }
 
+export async function deleteReviewFormAction(formData: FormData): Promise<void> {
+    await deleteReview(formData);
+}
+
 // Buscar reviews de um produto
 export async function getProductReviews(productId: number) {
     const cookieStore = await cookies();

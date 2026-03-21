@@ -1,4 +1,4 @@
-import { getAllReviews, deleteReview } from "@/actions/reviews";
+import { getAllReviews, deleteReviewFormAction } from "@/actions/reviews";
 import { MessageSquare, Star, Trash2, User, Box } from "lucide-react";
 import Link from "next/link";
 import { StarRating } from "@/components/shop/StarRating";
@@ -63,7 +63,7 @@ export default async function AdminReviewsPage() {
 
                             {/* Ações */}
                             <div className="flex items-center pl-4 border-l border-gray-100">
-                                <form action={deleteReview}>
+                                <form action={deleteReviewFormAction}>
                                     <input type="hidden" name="id" value={review.id} />
                                     <button
                                         className="h-10 w-10 flex items-center justify-center rounded-xl bg-red-50 text-red-500 hover:bg-red-600 hover:text-white transition-all"

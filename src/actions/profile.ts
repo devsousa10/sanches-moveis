@@ -41,3 +41,7 @@ export async function updateProfile(formData: FormData) {
         return { error: "Erro ao atualizar perfil." };
     }
 }
+
+export async function updateProfileFormAction(formData: FormData): Promise<void> {
+    await updateProfile(formData);
+}

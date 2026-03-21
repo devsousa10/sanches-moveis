@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { removeFromWishlist } from "@/actions/wishlist";
+import { removeFromWishlistFormAction } from "@/actions/wishlist";
 import { Heart, ShoppingBag, Trash2, ArrowRight, Sparkles, X } from "lucide-react";
 import Link from "next/link";
 import { cookies } from "next/headers";
@@ -69,7 +69,7 @@ export default async function WishlistPage() {
                         <div key={product.id} className="group relative bg-white rounded-[32px] p-3 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100">
 
                             {/* Botão Remover (Flutuante) */}
-                            <form action={removeFromWishlist} className="absolute top-5 right-5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <form action={removeFromWishlistFormAction} className="absolute top-5 right-5 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <input type="hidden" name="productId" value={product.id} />
                                 <button
                                     className="p-2 bg-white/80 backdrop-blur-md text-gray-400 hover:text-red-500 rounded-full shadow-sm hover:bg-white transition-colors"

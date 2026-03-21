@@ -1,4 +1,4 @@
-import { updateProfile } from "@/actions/profile";
+import { updateProfileFormAction } from "@/actions/profile";
 import { prisma } from "@/lib/prisma";
 import { UserCircle, Save, Lock, ShieldCheck, Phone, FileText } from "lucide-react";
 import { cookies } from "next/headers";
@@ -48,7 +48,7 @@ export default async function ProfilePage() {
 
                 {/* Formulário */}
                 <div className="lg:col-span-2">
-                    <form action={updateProfile} className="bg-white p-8 rounded-[32px] shadow-sm border border-gray-100">
+                    <form action={updateProfileFormAction} className="bg-white p-8 rounded-[32px] shadow-sm border border-gray-100">
                         <div className="space-y-6">
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-2">Nome Completo</label>

@@ -1,4 +1,4 @@
-import { deleteCoupon } from "@/actions/coupons";
+import { deleteCouponFormAction } from "@/actions/coupons";
 import { prisma } from "@/lib/prisma";
 import { Trash2, Plus, Edit, Calendar, Users, Layers, Sparkles, Copy, AlertCircle } from "lucide-react";
 import Link from "next/link";
@@ -174,7 +174,7 @@ export default async function CouponsPage() {
                                             <Edit className="h-4 w-4" /> Editar
                                         </Link>
 
-                                        <form action={deleteCoupon}>
+                                        <form action={deleteCouponFormAction}>
                                             <input type="hidden" name="id" value={coupon.id} />
                                             <button
                                                 className={`px-4 py-2 rounded transition-colors flex items-center justify-center ${isValid ? 'bg-white/10 hover:bg-red-500 hover:text-white text-gray-300' : 'bg-gray-200 text-red-500 hover:bg-red-100'}`}

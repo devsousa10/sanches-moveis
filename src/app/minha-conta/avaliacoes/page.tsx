@@ -1,4 +1,4 @@
-import { getUserReviews, deleteReview } from "@/actions/reviews";
+import { getUserReviews, deleteReviewFormAction } from "@/actions/reviews";
 import { MessageSquare, Star, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { StarRating } from "@/components/shop/StarRating";
@@ -59,7 +59,7 @@ export default async function MyReviewsPage() {
                             </div>
 
                             {/* Ação */}
-                            <form action={deleteReview}>
+                            <form action={deleteReviewFormAction}>
                                 <input type="hidden" name="id" value={review.id} />
                                 <button className="p-3 text-red-500 bg-red-50 hover:bg-red-100 rounded-xl transition-colors" title="Apagar avaliação">
                                     <Trash2 className="h-5 w-5" />

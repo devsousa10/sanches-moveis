@@ -1,6 +1,6 @@
 "use client";
 
-import { createCoupon, updateCoupon } from "@/actions/coupons";
+import { createCouponFormAction, updateCouponFormAction } from "@/actions/coupons";
 import { Save, ArrowLeft, TicketPercent, Calendar, Hash, Layers, Sparkles, AlertCircle, Copy, Check, X } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -21,7 +21,7 @@ interface CouponFormProps {
 
 export function CouponForm({ coupon, categories }: CouponFormProps) {
     const isEditing = !!coupon;
-    const action = isEditing ? updateCoupon : createCoupon;
+    const action = isEditing ? updateCouponFormAction : createCouponFormAction;
 
     // --- ESTADOS PARA O LIVE PREVIEW ---
     // Precisamos controlar o estado localmente para o "Live Preview" funcionar

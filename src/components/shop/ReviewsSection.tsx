@@ -1,6 +1,6 @@
 "use client";
 
-import { addReview, deleteReview } from "@/actions/reviews";
+import { addReview, deleteReviewFormAction } from "@/actions/reviews";
 import { StarRating } from "./StarRating";
 import { useState, useTransition } from "react";
 import { Loader2, MessageSquare, Trash2 } from "lucide-react";
@@ -129,7 +129,7 @@ export function ReviewsSection({ productId, reviews, average, total, currentUser
 
                                         {/* Botão de Excluir (Se for dono ou admin) */}
                                         {currentUserId && (currentUserId === review.user.id || review.user.role === 'ADMIN') && (
-                                            <form action={deleteReview}>
+                                            <form action={deleteReviewFormAction}>
                                                 <input type="hidden" name="id" value={review.id} />
                                                 <button className="text-gray-300 hover:text-red-500 transition-colors p-1" title="Excluir avaliação">
                                                     <Trash2 className="h-4 w-4" />

@@ -44,6 +44,10 @@ export async function createCoupon(formData: FormData) {
     redirect("/admin/cupons");
 }
 
+export async function createCouponFormAction(formData: FormData): Promise<void> {
+    await createCoupon(formData);
+}
+
 export async function updateCoupon(formData: FormData) {
     const id = Number(formData.get("id"));
     const code = formData.get("code") as string;
@@ -79,6 +83,10 @@ export async function updateCoupon(formData: FormData) {
     redirect("/admin/cupons");
 }
 
+export async function updateCouponFormAction(formData: FormData): Promise<void> {
+    await updateCoupon(formData);
+}
+
 export async function deleteCoupon(formData: FormData) {
     const id = Number(formData.get("id"));
 
@@ -98,4 +106,8 @@ export async function deleteCoupon(formData: FormData) {
         console.error("Erro ao deletar:", error);
         return { error: "Erro ao excluir cupom." };
     }
+}
+
+export async function deleteCouponFormAction(formData: FormData): Promise<void> {
+    await deleteCoupon(formData);
 }

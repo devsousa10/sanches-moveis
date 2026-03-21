@@ -81,3 +81,7 @@ export async function removeFromWishlist(formData: FormData) {
         return { error: "Erro interno ao remover item." };
     }
 }
+
+export async function removeFromWishlistFormAction(formData: FormData): Promise<void> {
+    await removeFromWishlist(formData);
+}
