@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 interface Review {
     id: number;
     rating: number;
-    comment: string;
+    comment: string | null;
     createdAt: Date;
     user: { id: number; name: string; role: string };
 }
@@ -139,7 +139,7 @@ export function ReviewsSection({ productId, reviews, average, total, currentUser
                                     </div>
                                 </div>
                                 <p className="text-gray-600 leading-relaxed">
-                                    {review.comment}
+                                    {review.comment ?? ""}
                                 </p>
                             </div>
                         ))
