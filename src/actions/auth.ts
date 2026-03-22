@@ -1,15 +1,25 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { compare, hash } from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
 // Configuração BLINDADA do Cookie
-const getCookieOptions = () => {
+const getCookieOptions = async () => {
+    const headerStore = await headers();
+    const forwardedProto = headerStore.get("x-forwarded-proto");
+    const host = headerStore.get("host") ?? "";
+    const appUrl = process.env.NEXT_PUBLIC_URL ?? "";
+    const isHttpsRequest =
+        forwardedProto === "https" ||
+        appUrl.startsWith("https://") ||
+        host.startsWith("localhost");
+
     return {
         httpOnly: true, // Apenas o servidor acessa (segurança contra XSS)
-        secure: process.env.NODE_ENV === "production", // HTTPS em produção, HTTP em dev
+        // Em produção atrás de proxy, só marca secure quando a requisição realmente chega via HTTPS.
+        secure: process.env.NODE_ENV === "production" && isHttpsRequest,
         sameSite: "lax" as const, // Permite navegação entre páginas mantendo o cookie
         maxAge: 60 * 60 * 24 * 7, // 7 dias de duração (Persistência)
         path: "/", // <--- OBRIGATÓRIO: Garante que funciona na Home, Checkout e Admin
@@ -42,7 +52,7 @@ export async function login(formData: FormData) {
 
         // Definir Cookies
         const cookieStore = await cookies();
-        const options = getCookieOptions();
+        const options = await getCookieOptions();
 
         cookieStore.set("sanches_session", String(user.id), options);
         cookieStore.set("sanches_role", user.role, options);
@@ -102,7 +112,7 @@ export async function register(formData: FormData) {
 
         // Definir Cookies Automaticamente ao Registrar
         const cookieStore = await cookies();
-        const options = getCookieOptions();
+        const options = await getCookieOptions();
 
         cookieStore.set("sanches_session", String(user.id), options);
         cookieStore.set("sanches_role", "USER", options);
